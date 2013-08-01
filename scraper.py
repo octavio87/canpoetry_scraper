@@ -190,7 +190,7 @@ def ISBNFinder(self):
                   ISBN = self.splitpub[num]
                elif ISBN == "":
                   ISBN = splitted[1]
-        ISBN.replace("\n", "").replace("\r","").replace("</li>","")    
+        ISBN.replace("\n", "").replace("\r","").replace("</li>","").replace(".","").replace(",","") 
         #print ISBN
         return ISBN
 
