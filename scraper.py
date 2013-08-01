@@ -24,6 +24,10 @@ def GetAuthorList(lname, fnamef):
           lnamef = fname[1].title()+" "+lname
           fnamefinal = fname[0]
           url="http://www.library.utoronto.ca/canpoetry/"+fname[1].lower()+lname.lower()+"/pub.htm"
+       else:
+          fnamefinal = fnamef
+          lnamef = lname
+          url="http://www.library.utoronto.ca/canpoetry/"+lname.lower()+"/pub.htm"
     else:
        fnamefinal = fnamef
        lnamef = lname
