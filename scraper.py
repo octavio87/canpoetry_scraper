@@ -136,8 +136,63 @@ class TermFinder:
         self.splitpub=new2
         return splitted
     
-    def ISBNFinder(self):
-        return str(self.splitbcolon)
+def ISBNFinder(self):
+        ISBN = ""
+        num = 0
+        #print self.splitpub
+        splitspace = []
+        splitskip2 = []
+        splitskip = self.bibitem.encode('utf-8').strip().split("/n")
+        for i in splitskip:
+            splitskip2.append(i.split("\n"))
+        for j in splitskip2:
+            splitspace.append(i.split(" "))
+        
+        #print splitspace
+        num2=0
+        for i in splitspace[0]:
+            if type(i) is list:
+               for x in i:
+                   print x
+                   num2+1
+                   if "ISBN" in i:
+                      ISBN = splitspace[num2]
+            else:
+                #print i
+                num2+1
+                if "ISBN" in i:
+                   ISBN = splitspace[num2]
+        num3=0
+        if type(ISBN) is list:
+           for t in ISBN:
+               print t
+               num3+=1
+               if "ISBN" in t:
+                  print ISBN
+                  ISBN = ISBN[num3]
+        #print ISBN, type(ISBN)
+        #print "Hello world"
+
+        
+        for i in self.splitpub:
+            num+=1
+            i.replace("</li>","")
+            #print i
+            if is_number(i) and len(i)>5:
+               
+               ISBN=i
+ 
+            if "ISBN" in i:
+               
+               complete = i.encode('utf-8').strip()
+               splitted = complete.split(" ")
+               if len(splitted)==1 and ISBN == "":
+                  ISBN = self.splitpub[num]
+               elif ISBN == "":
+                  ISBN = splitted[1]
+        ISBN.replace("\n", "").replace("\r","").replace("</li>","")    
+        #print ISBN
+        return ISBN
 
     
     def cityfinder(self):
